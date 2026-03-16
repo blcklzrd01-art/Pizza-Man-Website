@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Buttons Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #fff;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            text-align: left;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+
+        .hamburger {
+            font-size: 24px;
+        }
+
+        .card-content {
+            display: none;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+
+        .card-content iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Scrollbar styling */
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+
+        .container::-webkit-scrollbar-track {
+            background-color: #e1e1e1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Example Card 1 -->
+        <div class="card">
+            <button class="toggle-btn">
+                <span>Video Title 1</span>
+                <span class="hamburger">&#9776;</span>
+            </button>
+            <div class="card-content">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                <div class="info">
+                    <p><strong>Difficulty:</strong> Medium</p>
+                    <p><strong>Verifier:</strong> John Doe</p>
+                    <p><strong>Creator:</strong> Jane Smith</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example Card 2 -->
+        <div class="card">
+            <button class="toggle-btn">
+                <span>Video Title 2</span>
+                <span class="hamburger">&#9776;</span>
+            </button>
+            <div class="card-content">
+                <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
+                <div class="info">
+                    <p><strong>Difficulty:</strong> Hard</p>
+                    <p><strong>Verifier:</strong> Alice Lee</p>
+                    <p><strong>Creator:</strong> Bob Brown</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example Card 3 -->
+        <div class="card">
+            <button class="toggle-btn">
+                <span>Video Title 3</span>
+                <span class="hamburger">&#9776;</span>
+            </button>
+            <div class="card-content">
+                <iframe src="https://www.youtube.com/embed/oHg5SJYRHA0" allowfullscreen></iframe>
+                <div class="info">
+                    <p><strong>Difficulty:</strong> Easy</p>
+                    <p><strong>Verifier:</strong> Charlie Kim</p>
+                    <p><strong>Creator:</strong> Dana White</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more cards as needed -->
+    </div>
+
+    <script>
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const isVisible = content.style.display === 'block';
+                // Close all other cards
+                document.querySelectorAll('.card-content').forEach(c => c.style.display = 'none');
+                // Toggle this card
+                content.style.display = isVisible ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
