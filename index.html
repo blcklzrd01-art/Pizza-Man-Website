@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Interactive Site</title>
     <style>
-        /* General styles */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f4f4;
         }
 
-        /* Top menu bar */
+        /* Navbar */
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* center logo */
             align-items: center;
             background-color: #222;
             padding: 20px 30px;
@@ -26,7 +25,7 @@
             z-index: 1000;
         }
 
-        .navbar .logo-container {
+        .logo-container {
             display: flex;
             align-items: center;
             position: absolute;
@@ -34,22 +33,24 @@
             transform: translateX(-50%);
         }
 
-        .navbar .logo {
+        .logo {
             height: 60px;
             margin-right: 15px;
         }
 
-        .navbar .site-name {
+        .site-name {
             font-weight: bold;
             font-size: 28px;
         }
 
-        .navbar .nav-buttons {
+        .nav-buttons {
+            position: absolute;
+            right: 30px; /* place buttons on the right */
             display: flex;
             gap: 20px;
         }
 
-        .navbar .nav-buttons button {
+        .nav-buttons button {
             background-color: #444;
             color: white;
             border: none;
@@ -59,13 +60,13 @@
             font-size: 18px;
         }
 
-        .navbar .nav-buttons button:hover {
+        .nav-buttons button:hover {
             background-color: #555;
         }
 
         /* Main content */
         .main {
-            margin-top: 120px; /* to avoid navbar overlap */
+            margin-top: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -73,7 +74,6 @@
             padding: 20px;
         }
 
-        /* Hamburger drop-down buttons */
         .card-button {
             width: 400px;
             background-color: #ccc;
@@ -84,7 +84,6 @@
             text-align: left;
             font-weight: bold;
             font-size: 22px;
-            position: relative;
         }
 
         .card-button:hover {
@@ -99,7 +98,6 @@
             margin-top: 10px;
             border: 2px solid #999;
             border-radius: 6px;
-            position: relative;
             font-size: 18px;
         }
 
@@ -128,52 +126,52 @@
 
     <!-- Navbar -->
     <div class="navbar">
-        <div class="nav-buttons">
-            <button onclick="location.href='index.html'">Home</button>
-            <button onclick="location.href='leaderboard.html'">Leaderboard</button>
-        </div>
         <div class="logo-container">
             <img src="logo.png" alt="Logo" class="logo">
             <div class="site-name">My Site</div>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='leaderboard.html'">Leaderboards</button>
         </div>
     </div>
 
     <!-- Main content -->
     <div class="main">
-
-        <!-- Card buttons -->
         <div class="card">
-            <div class="card-button" onclick="toggleDropdown(1)">1. Example Title</div>
+            <div class="card-button" onclick="toggleDropdown(1)">1. Factory Man</div>
             <div class="dropdown-content" id="dropdown-1">
                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
                 <p>Verifier: ExampleVerifier</p>
                 <p>Creator: ExampleCreator</p>
-                <button onclick="location.href='card1.html'">Go to card page</button>
+                <button onclick="location.href='card1.html'">Victors</button>
             </div>
         </div>
-
         <div class="card">
-            <div class="card-button" onclick="toggleDropdown(2)">2. Another Title</div>
+            <div class="card-button" onclick="toggleDropdown(2)">2. Employment Man</div>
             <div class="dropdown-content" id="dropdown-2">
                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                <p>Verifier: Verifier2</p>
-                <p>Creator: Creator2</p>
-                <button onclick="location.href='card2.html'">Go to card page</button>
+                <p>Verifier: ExampleVerifier</p>
+                <p>Creator: ExampleCreator</p>
+                <button onclick="location.href='card2.html'">Victors</button>
             </div>
         </div>
-
+         <div class="card">
+            <div class="card-button" onclick="toggleDropdown(2)">3. Stinker Man</div>
+            <div class="dropdown-content" id="dropdown-2">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                <p>Verifier: ExampleVerifier</p>
+                <p>Creator: ExampleCreator</p>
+                <button onclick="location.href='card2.html'">Victors</button>
+            </div>
+        </div>
         <!-- Repeat similar blocks for buttons 3-10 -->
-
     </div>
 
     <script>
         function toggleDropdown(id) {
             const dropdown = document.getElementById(`dropdown-${id}`);
-            if (dropdown.style.display === 'flex') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'flex';
-            }
+            dropdown.style.display = (dropdown.style.display === 'flex') ? 'none' : 'flex';
         }
     </script>
 
