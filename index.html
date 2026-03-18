@@ -3,50 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My GitHub Index</title>
+  <title>Challenge Index</title>
   <style>
     :root {
-      --bg: #050505;
-      --panel: rgba(10, 10, 10, 0.82);
-      --panel-2: rgba(18, 18, 18, 0.92);
-      --text: #f4f4f4;
-      --muted: #b8b8b8;
-      --line: rgba(255,255,255,0.1);
-      --accent: #c1121f;
-      --accent-2: #7f1d1d;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      --bg: #0f0b0c;
+      --bg-2: #171112;
+      --panel: #b3aeb0;
+      --panel-2: #9a9497;
+      --dark: #4d4749;
+      --dark-2: #5a5356;
+      --accent: #6f2b33;
+      --accent-2: #8c3943;
+      --line: #20191b;
+      --text: #0b0909;
+      --shadow: 0 12px 30px rgba(0,0,0,.28);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
     }
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
-
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, var(--bg) 0%, #080606 100%);
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at top, rgba(193,18,31,.22), transparent 32%),
-        linear-gradient(180deg, #090909 0%, #030303 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        repeating-linear-gradient(
-          180deg,
-          rgba(255,255,255,0.02) 0px,
-          rgba(255,255,255,0.02) 1px,
-          transparent 2px,
-          transparent 4px
-        );
-      opacity: .35;
-      mix-blend-mode: soft-light;
     }
 
     a {
@@ -54,329 +37,428 @@
       text-decoration: none;
     }
 
-    .wrap {
-      width: min(1150px, calc(100% - 32px));
+    .site-shell {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #dbd7d9 0%, #d0cbcd 100%);
+      max-width: 1350px;
       margin: 0 auto;
+      border-left: 2px solid #4d2730;
+      border-right: 2px solid #4d2730;
     }
 
-    .hero {
-      min-height: 100svh;
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 54px;
+      background: #b7b1b3;
+      border-bottom: 5px solid #110d0e;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .logo {
+      width: 94px;
+      height: 94px;
+      border-radius: 999px;
       display: grid;
       place-items: center;
-      padding: 48px 0;
-    }
-
-    .hero-card {
-      width: 100%;
-      background: var(--panel);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--line);
-      border-radius: 28px;
+      background: #a54a58;
+      color: #f6ecef;
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+      border: 3px solid #31181d;
       box-shadow: var(--shadow);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1.3fr 0.85fr;
+      user-select: none;
     }
 
-    .hero-main {
-      padding: 56px;
-      position: relative;
-    }
-
-    .badge {
-      display: inline-flex;
+    .nav {
+      display: flex;
+      gap: 28px;
       align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
+    }
+
+    .pill-button {
+      border: 0;
+      background: var(--dark);
+      color: #120f10;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 18px 34px;
+      min-width: 176px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-size: 12px;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease;
+      box-shadow: var(--shadow);
     }
 
-    h1 {
-      margin: 18px 0 12px;
-      font-size: clamp(2.3rem, 5vw, 4.9rem);
-      line-height: .96;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-    }
-
-    .sub {
-      font-size: clamp(1rem, 1.4vw, 1.2rem);
-      color: var(--muted);
-      max-width: 62ch;
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-
-    .primary-links,
-    .side-links,
-    .social-links {
-      display: grid;
-      gap: 12px;
-    }
-
-    .primary-links {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-bottom: 18px;
-    }
-
-    .link-card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border-radius: 18px;
-      padding: 16px 18px;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-
-    .link-card:hover,
-    .link-card:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.25);
-      background: linear-gradient(180deg, rgba(193,18,31,0.18), rgba(255,255,255,0.03));
+    .pill-button:hover,
+    .pill-button:focus-visible,
+    .search-input:focus,
+    .drop-toggle:hover,
+    .drop-toggle:focus-visible,
+    .victors-link:hover,
+    .victors-link:focus-visible {
+      transform: translateY(-1px);
+      background: var(--dark-2);
       outline: none;
     }
 
-    .link-title {
-      display: block;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
+    .content {
+      padding: 42px 0 70px;
     }
 
-    .link-desc {
-      display: block;
-      color: var(--muted);
-      font-size: .95rem;
-      line-height: 1.45;
-    }
-
-    .hero-side {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-left: 1px solid var(--line);
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 22px;
-    }
-
-    .logo-box {
-      aspect-ratio: 1 / 1;
-      width: min(100%, 290px);
+    .container {
+      width: min(1030px, calc(100% - 34px));
       margin: 0 auto;
-      border-radius: 24px;
-      border: 1px solid var(--line);
+    }
+
+    .search-bar {
+      background: var(--dark);
+      border-radius: 999px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      box-shadow: var(--shadow);
+      margin-bottom: 48px;
+    }
+
+    .search-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: #0d0a0a;
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 10px 4px;
+    }
+
+    .search-input::placeholder {
+      color: #120f10;
+      opacity: 1;
+    }
+
+    .card-stack {
       display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(193,18,31,.4), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      box-shadow: inset 0 0 40px rgba(255,255,255,0.03);
-      text-align: center;
-      padding: 20px;
+      gap: 28px;
     }
 
-    .logo-box span {
-      display: block;
-      font-size: clamp(2rem, 4vw, 3.25rem);
+    .mode-card {
+      background: var(--panel);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .mode-header {
+      background: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      border-radius: var(--radius-xl);
       font-weight: 900;
-      line-height: .92;
-      letter-spacing: -.04em;
-      text-transform: uppercase;
+      font-size: 1.05rem;
     }
 
-    .section-label {
-      font-size: .75rem;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--muted);
+    .mode-body {
+      padding: 30px 44px 34px;
+      display: grid;
+      grid-template-columns: 1.15fr .95fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .video-block {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .label,
+    .meta-label {
+      font-size: 1rem;
+      font-weight: 900;
       margin-bottom: 10px;
     }
 
-    .stack {
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(180deg, #8d404c 0%, #77313b 100%);
+      border-radius: 32px;
+      border: 3px solid #422126;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.04);
+    }
+
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-placeholder {
+      font-weight: 900;
+      text-align: center;
+      padding: 18px;
+      color: #f5ebed;
+    }
+
+    .info-col {
+      display: grid;
+      gap: 6px;
+      align-content: start;
+    }
+
+    .info-line {
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .dropdown-group {
+      margin-top: 16px;
       display: grid;
       gap: 10px;
+      justify-items: start;
     }
 
-    .stack a {
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
+    .drop-toggle,
+    .victors-link {
+      border: none;
+      border-radius: 999px;
+      background: var(--dark);
+      color: #120f10;
+      font-weight: 900;
+      font-size: 1rem;
+      min-width: 275px;
+      padding: 14px 28px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .dropdown-panel {
+      display: none;
+      width: min(360px, 100%);
       background: var(--panel-2);
-      transition: transform .18s ease, border-color .18s ease;
+      border-radius: 24px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      border: 2px solid #766f72;
     }
 
-    .stack a:hover,
-    .stack a:focus-visible {
-      transform: translateX(3px);
-      border-color: rgba(255,255,255,0.24);
+    .dropdown-panel.open {
+      display: grid;
+      gap: 8px;
+    }
+
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      background: #d0cbcd;
+      color: #120f10;
+      font-weight: 800;
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item:focus-visible {
+      background: #dfdadd;
+      transform: translateX(2px);
       outline: none;
     }
 
-    .contact {
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: .96rem;
+    .helper-note {
+      margin-top: 30px;
+      color: #342d2f;
+      font-weight: 700;
+      font-size: .95rem;
     }
 
-    .footer {
-      text-align: center;
-      color: #9a9a9a;
-      padding: 18px 0 38px;
-      font-size: .92rem;
-    }
+    @media (max-width: 860px) {
+      .topbar {
+        padding: 14px 20px;
+        flex-direction: column;
+      }
 
-    .menu-toggle {
-      display: none;
-      width: 100%;
-      padding: 14px 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--line);
-      color: var(--text);
-      border-radius: 14px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+      .nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
 
-    @media (max-width: 920px) {
-      .hero-card {
+      .mode-body {
         grid-template-columns: 1fr;
-      }
-
-      .hero-side {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-      }
-    }
-
-    @media (max-width: 700px) {
-      .hero-main,
-      .hero-side {
         padding: 24px;
       }
 
-      .primary-links {
+      .video-block {
         grid-template-columns: 1fr;
       }
+    }
 
-      .menu-toggle {
-        display: block;
-        margin-bottom: 14px;
+    @media (max-width: 560px) {
+      .pill-button {
+        min-width: 130px;
+        width: 100%;
       }
 
-      .collapsible {
-        display: none;
-      }
-
-      .collapsible.open {
+      .nav {
+        width: 100%;
         display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mode-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .drop-toggle,
+      .victors-link,
+      .dropdown-panel {
+        width: 100%;
+        min-width: 0;
       }
     }
   </style>
 </head>
 <body>
-  <main class="hero">
-    <div class="wrap">
-      <section class="hero-card">
-        <div class="hero-main">
-          <div class="badge">GitHub Index</div>
-          <h1>YOUR PROJECT<br />HUB</h1>
-          <p class="sub">
-            A dark, dramatic landing page inspired by the structure of the FNaF Max Mode List homepage:
-            bold title, split layout, major navigation buttons, extra info links, socials, and a quick contact section.
-          </p>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="logo">LOGO</div>
 
-          <div class="primary-links">
-            <a class="link-card" href="#main-list">
-              <span class="link-title">Main Section</span>
-              <span class="link-desc">Your primary page, featured project, or main list.</span>
-            </a>
-            <a class="link-card" href="#secondary-list">
-              <span class="link-title">Secondary Section</span>
-              <span class="link-desc">A second category, archive, alt page, or bonus section.</span>
-            </a>
-          </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="pill-button" href="index.html">Home</a>
+        <a class="pill-button" href="leaderboard.html">Leaderboard</a>
+      </nav>
+    </header>
 
-          <button class="menu-toggle" id="toggleButton" aria-expanded="false" aria-controls="mobileSections">Open quick links</button>
+    <main class="content">
+      <div class="container">
+        <section class="search-bar" aria-label="Search modes">
+          <input
+            id="searchInput"
+            class="search-input"
+            type="text"
+            placeholder="Search For A Mode by Title:"
+            autocomplete="off"
+          />
+        </section>
 
-          <div class="collapsible open" id="mobileSections">
-            <div class="section-label">Project</div>
-            <div class="side-links stack" style="margin-bottom: 18px;">
-              <a href="#team">Team</a>
-              <a href="#rules">Rules / Info</a>
-              <a href="#submissions">Submissions</a>
+        <section id="modeList" class="card-stack">
+          <!-- DUPLICATE ONE .mode-card BLOCK TO ADD MORE ENTRIES -->
+          <article class="mode-card" data-title="My Challenge For You">
+            <div class="mode-header">
+              <div>#1. My Challenge For You</div>
+              <div>300 points</div>
             </div>
 
-            <div class="section-label">Socials</div>
-            <div class="social-links stack" style="margin-bottom: 18px;">
-              <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://youtube.com/" target="_blank" rel="noreferrer">YouTube</a>
-              <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter / X</a>
-              <a href="https://discord.com/" target="_blank" rel="noreferrer">Discord</a>
+            <div class="mode-body">
+              <div class="video-block">
+                <div class="label">Video:</div>
+                <div class="video-embed">
+                  <!-- Replace the placeholder with a real embed if you want -->
+                  <!-- Example:
+                  <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Mode video" allowfullscreen></iframe>
+                  -->
+                  <div class="video-placeholder">(YOUTUBE VIDEO LINK EMBED)</div>
+                </div>
+              </div>
+
+              <div class="info-col">
+                <div class="info-line">Verifier:</div>
+                <div class="info-line">Creator:</div>
+
+                <div class="dropdown-group">
+                  <button class="drop-toggle" type="button" aria-expanded="false">Victors:</button>
+                  <div class="dropdown-panel" aria-hidden="true">
+                    <a class="dropdown-item victors-link" href="victors-my-challenge-for-you.html">Open Victors Page</a>
+                    <button class="dropdown-item" type="button">Victor Name 1</button>
+                    <button class="dropdown-item" type="button">Victor Name 2</button>
+                    <button class="dropdown-item" type="button">Victor Name 3</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="mode-card" data-title="The Red Hall">
+            <div class="mode-header">
+              <div>#2. The Red Hall</div>
+              <div>245 points</div>
             </div>
 
-            <div class="section-label">Have a question?</div>
-            <div class="contact">
-              Replace this text with your own contact info, Discord server invite, form link, or email.
-              This section mirrors the simple “need help?” panel style from the reference site.
+            <div class="mode-body">
+              <div class="video-block">
+                <div class="label">Video:</div>
+                <div class="video-embed">
+                  <div class="video-placeholder">(YOUTUBE VIDEO LINK EMBED)</div>
+                </div>
+              </div>
+
+              <div class="info-col">
+                <div class="info-line">Verifier:</div>
+                <div class="info-line">Creator:</div>
+
+                <div class="dropdown-group">
+                  <button class="drop-toggle" type="button" aria-expanded="false">Victors:</button>
+                  <div class="dropdown-panel" aria-hidden="true">
+                    <a class="dropdown-item victors-link" href="victors-the-red-hall.html">Open Victors Page</a>
+                    <button class="dropdown-item" type="button">Victor Name 1</button>
+                    <button class="dropdown-item" type="button">Victor Name 2</button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <aside class="hero-side">
-          <div class="logo-box" aria-label="Site logo area">
-            <span>YOUR<br />LOGO</span>
-          </div>
-
-          <div>
-            <div class="section-label">Project</div>
-            <div class="stack">
-              <a href="#team">Team</a>
-              <a href="#rules">Rules / Info</a>
-              <a href="#submissions">Submissions</a>
-            </div>
-          </div>
-
-          <div>
-            <div class="section-label">Socials</div>
-            <div class="stack">
-              <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://youtube.com/" target="_blank" rel="noreferrer">YouTube</a>
-              <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter / X</a>
-              <a href="https://discord.com/" target="_blank" rel="noreferrer">Discord</a>
-            </div>
-          </div>
-
-          <div>
-            <div class="section-label">Have a question?</div>
-            <div class="contact">
-              Ask in your server, submit a form, or email your project address here.
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <div class="footer">Built for a GitHub Pages index. Swap the placeholder text and links with your real content.</div>
-    </div>
-  </main>
+        <p class="helper-note">
+          Duplicate any mode card, change the title, points, video, and victors link, and you’re set.
+          Each Victors button controls its own dropdown so the blocks are easy to move around.
+        </p>
+      </div>
+    </main>
+  </div>
 
   <script>
-    const toggleButton = document.getElementById('toggleButton');
-    const mobileSections = document.getElementById('mobileSections');
+    const toggles = document.querySelectorAll('.drop-toggle');
 
-    toggleButton.addEventListener('click', () => {
-      const isOpen = mobileSections.classList.toggle('open');
-      toggleButton.setAttribute('aria-expanded', String(isOpen));
-      toggleButton.textContent = isOpen ? 'Hide quick links' : 'Open quick links';
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const panel = toggle.nextElementSibling;
+        const isOpen = panel.classList.contains('open');
+
+        panel.classList.toggle('open', !isOpen);
+        panel.setAttribute('aria-hidden', String(isOpen));
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.mode-card');
+
+    searchInput.addEventListener('input', () => {
+      const value = searchInput.value.trim().toLowerCase();
+
+      cards.forEach((card) => {
+        const title = card.dataset.title.toLowerCase();
+        card.style.display = title.includes(value) ? '' : 'none';
+      });
     });
   </script>
 </body>
