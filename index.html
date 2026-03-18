@@ -1,179 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Interactive Site</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Interactive Site</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+    }
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: center; /* center logo */
-            align-items: center;
-            background-color: #222;
-            padding: 20px 30px;
-            color: white;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+    /* Navbar */
+    .navbar {
+        display: flex;
+        justify-content: center; /* center logo */
+        align-items: center;
+        background-color: #222;
+        height: 60px;
+        padding: 0 20px;
+        color: white;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .logo-container {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+    }
 
-        .logo {
-            height: 60px;
-            margin-right: 15px;
-        }
+    .logo {
+        height: 40px; /* fit inside navbar */
+        margin-right: 10px;
+    }
 
-        .site-name {
-            font-weight: bold;
-            font-size: 28px;
-        }
+    .site-name {
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 60px; /* vertically center text */
+    }
 
-        .nav-buttons {
-            position: absolute;
-            right: 25px; /* place buttons on the right */
-            display: flex;
-            gap: 20px;
-        }
+    .nav-buttons {
+        position: absolute;
+        right: 20px; /* not too far */
+        display: flex;
+        gap: 10px;
+        height: 100%;
+    }
 
-        .nav-buttons button {
-            background-color: #444;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            border-radius: 6px;
-            font-size: 18px;
-        }
+    .nav-buttons button {
+        background-color: #444;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        height: 40px; /* fits nicely inside navbar */
+        align-self: center;
+    }
 
-        .nav-buttons button:hover {
-            background-color: #555;
-        }
+    .nav-buttons button:hover {
+        background-color: #555;
+    }
 
-        /* Main content */
-        .main {
-            margin-top: 120px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            padding: 20px;
-        }
+    /* Main content */
+    .main {
+        margin-top: 80px; /* leave space for navbar */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+    }
 
-        .card-button {
-            width: 400px;
-            background-color: #ccc;
-            border: 2px solid #999;
-            border-radius: 6px;
-            cursor: pointer;
-            padding: 15px;
-            text-align: left;
-            font-weight: bold;
-            font-size: 22px;
-        }
+    .card-button {
+        width: 400px;
+        background-color: #ccc;
+        border: 2px solid #999;
+        border-radius: 6px;
+        cursor: pointer;
+        padding: 15px;
+        text-align: left;
+        font-weight: bold;
+        font-size: 22px;
+    }
 
-        .card-button:hover {
-            background-color: #bbb;
-        }
+    .card-button:hover {
+        background-color: #bbb;
+    }
 
-        .dropdown-content {
-            display: none;
-            flex-direction: column;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 15px;
-            margin-top: 10px;
-            border: 2px solid #999;
-            border-radius: 6px;
-            font-size: 18px;
-        }
+    .dropdown-content {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 15px;
+        margin-top: 10px;
+        border: 2px solid #999;
+        border-radius: 6px;
+        font-size: 18px;
+    }
 
-        .dropdown-content iframe {
-            width: 100%;
-            height: 300px;
-            margin-bottom: 15px;
-        }
+    .dropdown-content iframe {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 15px;
+    }
 
-        .dropdown-content button {
-            background-color: #888;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 18px;
-        }
+    .dropdown-content button {
+        background-color: #888;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 18px;
+    }
 
-        .dropdown-content button:hover {
-            background-color: #777;
-        }
-    </style>
+    .dropdown-content button:hover {
+        background-color: #777;
+    }
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo-container">
-            <img src="logo.png" alt="Logo" class="logo">
-            <div class="site-name">My Site</div>
-        </div>
-        <div class="nav-buttons">
-            <button onclick="location.href='index.html'">Home</button>
-            <button onclick="location.href='leaderboard.html'">Leaderboards</button>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="site-name">My Site</div>
+    </div>
+    <div class="nav-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='leaderboard.html'">Leaderboard</button>
+    </div>
+</div>
+
+<!-- Main content -->
+<div class="main">
+    <div class="card">
+        <div class="card-button" onclick="toggleDropdown(1)">1. Example Title</div>
+        <div class="dropdown-content" id="dropdown-1">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            <p>Verifier: ExampleVerifier</p>
+            <p>Creator: ExampleCreator</p>
+            <button onclick="location.href='card1.html'">Go to card page</button>
         </div>
     </div>
 
-    <!-- Main content -->
-    <div class="main">
-        <div class="card">
-            <div class="card-button" onclick="toggleDropdown(1)">1. Factory Man</div>
-            <div class="dropdown-content" id="dropdown-1">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                <p>Verifier: ExampleVerifier</p>
-                <p>Creator: ExampleCreator</p>
-                <button onclick="location.href='card1.html'">Victors</button>
-            </div>
+    <div class="card">
+        <div class="card-button" onclick="toggleDropdown(2)">2. Another Title</div>
+        <div class="dropdown-content" id="dropdown-2">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            <p>Verifier: Verifier2</p>
+            <p>Creator: Creator2</p>
+            <button onclick="location.href='card2.html'">Go to card page</button>
         </div>
-        <div class="card">
-            <div class="card-button" onclick="toggleDropdown(2)">2. Employment Man</div>
-            <div class="dropdown-content" id="dropdown-2">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                <p>Verifier: ExampleVerifier</p>
-                <p>Creator: ExampleCreator</p>
-                <button onclick="location.href='card2.html'">Victors</button>
-            </div>
-        </div>
-         <div class="card">
-            <div class="card-button" onclick="toggleDropdown(2)">3. Stinker Man</div>
-            <div class="dropdown-content" id="dropdown-2">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                <p>Verifier: ExampleVerifier</p>
-                <p>Creator: ExampleCreator</p>
-                <button onclick="location.href='card2.html'">Victors</button>
-            </div>
-        </div>
-        <!-- Repeat similar blocks for buttons 3-10 -->
     </div>
+    <!-- Repeat blocks 3-10 -->
+</div>
 
-    <script>
-        function toggleDropdown(id) {
-            const dropdown = document.getElementById(`dropdown-${id}`);
-            dropdown.style.display = (dropdown.style.display === 'flex') ? 'none' : 'flex';
-        }
-    </script>
+<script>
+function toggleDropdown(id) {
+    const dropdown = document.getElementById(`dropdown-${id}`);
+    dropdown.style.display = (dropdown.style.display === 'flex') ? 'none' : 'flex';
+}
+</script>
 
 </body>
 </html>
