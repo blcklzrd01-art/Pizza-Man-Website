@@ -214,12 +214,12 @@
 
     .info-col {
       display: grid;
-      gap: 6px;
+      gap: 12px;
       align-content: start;
     }
 
     .info-line {
-      font-size: 1rem;
+      font-size: 2rem;
       font-weight: 900;
     }
 
@@ -312,10 +312,14 @@
 
     @media (max-width: 560px) {
       .pill-button {
-        min-width: 130px;
-        width: 100%;
-      }
+  min-width: 130px;
+  width: 100%;
 
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+  text-align: center;
+}
       .nav {
         width: 100%;
         display: grid;
@@ -424,8 +428,7 @@
         </section>
 
         <p class="helper-note">
-          Duplicate any mode card, change the title, points, video, and victors link, and you’re set.
-          Each Victors button controls its own dropdown so the blocks are easy to move around.
+          The
         </p>
       </div>
     </main>
